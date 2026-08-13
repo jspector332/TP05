@@ -1,4 +1,4 @@
-<form action='@Url.Action("Registro", "Home")' method="post">
+<form action='@Url.Action("Verificar", "Home")' method="post">
 
     <label for="nombre">Nombre:</label>
     <input type="text" id="nombre" name="nombre" required><br><br>
@@ -13,6 +13,11 @@
     <input type="password" id="contrasenia" name="contrasenia" required><br><br>
 
     <label for="tipoUsuario">Tipo de Usuario:</label>
-    <input type="text" id="tipoUsuario" name="tipoUsuario" required><br><br>
+    <input type="radio" id="tipoUsuario" name="tipoUsuario" value="Alumno" required>Alumno<br><br>
+    <input type="radio" id="tipoUsuario" name="tipoUsuario" value="Docente" required>Docente<br><br>
+    <input type="radio" id="tipoUsuario" name="tipoUsuario" value="Coordinador" required>Coordinador<br><br>
+    <input type="radio" id="tipoUsuario" name="tipoUsuario" value="Padre" required>Padre<br><br>
 
 <button type="submit">Registrarse</button>
+<button type="reset">Limpiar</button>
+</form>

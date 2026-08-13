@@ -1,0 +1,17 @@
+@{
+    string nombreUsuarioV = Context.Session.GetString("Usuario");
+    string contraseniaV = Context.Session.GetString("Contraseña");
+}
+
+<h1>Bienvenido, @nombreUsuarioV</h1>
+<h2>Datos Personales</h2>
+<h3>Nombre: @ViewBag.Usuario.Nombre</h3>
+<h3>Apellido: @ViewBag.Usuario.Apellido</h3>
+<h3>Tipo de Usuario: @ViewBag.Usuario.TipoUsuario</h3>
+<h3>Su contraseña es: @contraseniaV</h3>
+
+<h3>Recuerde cerrar sesión al finalizar su actividad.</h3>
+
+<form action='@Url.Action("Logout", "Home")' method="get">
+    <button type="submit">Cerrar Sesión</button>
+</form>

@@ -12,7 +12,7 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
-
+    BD bd = new BD();
     public IActionResult Index()
     {
         return View();
@@ -26,6 +26,54 @@ public class HomeController : Controller
     public IActionResult Registro()
     {
         return View();
+    }
+
+    [HttpPost]
+    public IActionResult Verificar(Usuario usuario)
+    {
+        if(bd.verificarUsuario(usuario) == null)
+        {
+            bd.agregarUsuario(usuario);
+        }
+        else{
+            return View("Registro");
+        }
+        return RedirectToAction("Index");
+    }
+    
+    [HttpPost]
+    public IActionResult VerificarLogin(Usuario usuario)
+    {
+        Usuario usuarioExistente = bd.verificarUsuario(usuario);
+        if (usuarioExistente != null && usuarioExistente.contrasenia == usuario.contrasenia)
+        {
+            HttpContext.Session.SetString("Usuario", usuario.nombreUsuario);
+            HttpContext.Session.SetString("Contraseña", usuario.contrasenia);
+            return RedirectToAction("Bienvenida");
+        }
+        else
+        {
+            return RedirectToAction("Index");
+        }
+    }
+
+    public IActionResult Bienvenida()
+    {
+        if(HttpContext.Session.GetString("Usuario") != null)
+        {
+            ViewBag.Usuario = HttpContext.Session.GetString("Usuario");
+            return View();
+        }
+        else
+        {
+            return RedirectToAction("Login");
+        }
+    }
+
+    public IActionResult Logout()
+    {
+        HttpContext.Session.Clear();
+        return RedirectToAction("Index");
     }
 
     public IActionResult Privacy()

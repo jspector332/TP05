@@ -47,8 +47,10 @@ public class HomeController : Controller
         Usuario usuarioExistente = bd.verificarUsuario(usuario);
         if (usuarioExistente != null && usuarioExistente.contrasenia == usuario.contrasenia)
         {
-            HttpContext.Session.SetString("Usuario", usuario.nombreUsuario);
-            HttpContext.Session.SetString("Contraseña", usuario.contrasenia);
+            HttpContext.Session.SetString("Usuario", usuarioExistente.nombreUsuario);
+            HttpContext.Session.SetString("Contrasenia", usuarioExistente.contrasenia);
+            HttpContext.Session.SetString("ID", usuarioExistente.id.ToString());
+            Console.WriteLine("ID: " + usuarioExistente.id.ToString());
             return RedirectToAction("Bienvenida");
         }
         else
@@ -58,18 +60,21 @@ public class HomeController : Controller
     }
 
     public IActionResult Bienvenida()
-    {
+    {   
         if(HttpContext.Session.GetString("Usuario") != null)
         {
-            ViewBag.Usuario = HttpContext.Session.GetString("Usuario");
+            ViewBag.UsuarioNombre = HttpContext.Session.GetString("Usuario");
+            Usuario usuarioAView = bd.buscarXId(int.Parse(HttpContext.Session.GetString("ID")));
+            
+            if(usuarioAView != null)
+            { ViewBag.Usuario = usuarioAView; }
             return View();
         }
         else
         {
-            return RedirectToAction("Login");
+            return RedirectToAction("Index");
         }
     }
-
     public IActionResult Logout()
     {
         HttpContext.Session.Clear();

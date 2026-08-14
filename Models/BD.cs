@@ -23,4 +23,13 @@ public class BD
         }
         return usuarioExistente;
     }
+    public Usuario buscarXId(int id)
+    {
+        Usuario usuarioExistente = null;
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            string query = "SELECT * FROM Usuarios WHERE id = @pId";
+            usuarioExistente = connection.QueryFirstOrDefault<Usuario>(query, new {pId = id});
+        }
+        return usuarioExistente;
+    }
 }

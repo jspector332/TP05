@@ -1,23 +1,36 @@
-<form action='@Url.Action("Verificar", "Home")' method="post">
+<form class="registro-form" action='@Url.Action("Verificar", "Home")' method="post">
 
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required><br><br>
+    <div class="form-row">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required />
+    </div>
 
-    <label for="apellido">Apellido:</label>
-    <input type="text" id="apellido" name="apellido" required><br><br>
+    <div class="form-row">
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" required />
+    </div>
 
-    <label for="nombreUsuario">Nombre de Usuario:</label>
-    <input type="text" id="nombreUsuario" name="nombreUsuario" required><br><br>
+    <div class="form-row">
+        <label for="nombreUsuario">Nombre de Usuario:</label>
+        <input type="text" id="nombreUsuario" name="nombreUsuario" required />
+    </div>
 
-    <label for="contrasenia">Contraseña:</label>
-    <input type="password" id="contrasenia" name="contrasenia" required><br><br>
+    <div class="form-row">
+        <label for="contrasenia">Contraseña:</label>
+        <input type="password" id="contrasenia" name="contrasenia" required />
+    </div>
 
-    <label for="tipoUsuario">Tipo de Usuario:</label>
-    <input type="radio" id="tipoUsuario" name="tipoUsuario" value="Alumno" required>Alumno<br><br>
-    <input type="radio" id="tipoUsuario" name="tipoUsuario" value="Docente" required>Docente<br><br>
-    <input type="radio" id="tipoUsuario" name="tipoUsuario" value="Coordinador" required>Coordinador<br><br>
-    <input type="radio" id="tipoUsuario" name="tipoUsuario" value="Padre" required>Padre<br><br>
+    <fieldset class="form-row">
+        <h3>Tipo de Usuario:</h3>
+        <label><input type="radio" name="tipoUsuario" value="Alumno" required /> Alumno</label>
+        <label><input type="radio" name="tipoUsuario" value="Docente" required /> Docente</label>
+        <label><input type="radio" name="tipoUsuario" value="Coordinador" required /> Coordinador</label>
+        <label><input type="radio" name="tipoUsuario" value="Padre" required /> Padre</label>
+    </fieldset>
 
-<button type="submit">Registrarse</button>
-<button type="reset">Limpiar</button>
+    <div class="form-row buttons">
+        <button type="submit">Registrarse</button>
+        <button type="reset">Limpiar</button>
+    </div>
+
 </form>

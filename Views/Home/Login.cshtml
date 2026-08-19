@@ -1,10 +1,16 @@
-<form action='@Url.Action("VerificarLogin", "Home")' method="post">
+<form action='@Url.Action("VerificarLogin", "Home")' method="post" onsubmit="return validarFormularioLogin()">
+    @if (ViewBag.Error != null)
+    {
+        <div style="color: red;">@ViewBag.Error</div>
+    }
     <label for="nombreUsuario">Nombre de Usuario:</label>
     <input type="text" id="nombreUsuario" name="nombreUsuario" required><br><br>
+    <div id="fb-nombreusuariologin"></div>
 
     <label for="contrasenia">Contraseña:</label>
     <input type="password" id="contrasenia" name="contrasenia" required><br><br>
-
-<button type="submit">Iniciar Sesión</button>
+    <div id="fb-contlogin"></div>
+<button type="submit" onclick="enviarFormLogin()">Iniciar Sesión</button>
 <button type="reset">Limpiar</button>
+<div id="ResultadoLogin"></div>
 </form>

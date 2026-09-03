@@ -45,10 +45,10 @@ public class HomeController : Controller
     public IActionResult VerificarLogin(Usuario usuario)
     {
         Usuario usuarioExistente = bd.verificarUsuario(usuario);
+        Console.WriteLine("Usuario existente: " + (usuarioExistente != null ? usuarioExistente.nombreUsuario : "null"));
         if (usuarioExistente != null && usuarioExistente.contrasenia == usuario.contrasenia)
         {
             HttpContext.Session.SetString("Usuario", usuarioExistente.nombreUsuario);
-            HttpContext.Session.SetString("Contrasenia", usuarioExistente.contrasenia);
             HttpContext.Session.SetString("ID", usuarioExistente.id.ToString());
             Console.WriteLine("ID: " + usuarioExistente.id.ToString());
             return RedirectToAction("Bienvenida");

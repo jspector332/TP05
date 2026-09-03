@@ -36,6 +36,7 @@ public class HomeController : Controller
             bd.agregarUsuario(usuario);
         }
         else{
+            ViewBag.Error = "Este usuario ya existe. Prueba otro.";
             return View("Registro");
         }
         return RedirectToAction("Index");
@@ -45,7 +46,6 @@ public class HomeController : Controller
     public IActionResult VerificarLogin(Usuario usuario)
     {
         Usuario usuarioExistente = bd.verificarUsuario(usuario);
-        Console.WriteLine("Usuario existente: " + (usuarioExistente != null ? usuarioExistente.nombreUsuario : "null"));
         if (usuarioExistente != null && usuarioExistente.contrasenia == usuario.contrasenia)
         {
             HttpContext.Session.SetString("Usuario", usuarioExistente.nombreUsuario);
@@ -56,7 +56,7 @@ public class HomeController : Controller
         else
         {
             ViewBag.Error= "Nombre de usuario o contraseña incorrectos.";
-            return RedirectToAction("Login");
+            return View("Login");
         }
     }
 
@@ -73,7 +73,7 @@ public class HomeController : Controller
         }
         else
         {
-            return RedirectToAction("Index");
+            return View("Index");
         }
     }
     public IActionResult Logout()

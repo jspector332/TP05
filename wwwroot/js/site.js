@@ -22,8 +22,6 @@ function enviarFormulario(){
     const contraseniaV = contrasenia.value;
     const tipoV = tipo.value;
 
-    console.log(nombreV, apellidoV, nombreUsuarioV, contraseniaV, tipoV);
-
     limpiarFeedbacks();
 
     if (!nombreV || nombreV.trim().length === 0) {
@@ -82,14 +80,12 @@ function enviarFormulario(){
 
 function mostrarError(id, msg) {
     const el = document.getElementById(id);
-    console.log(id);
     el.innerHTML = msg;
     el.style.color = "red";
 }
 
 function mostrarOK(id, msg){
     const el = document.getElementById(id);
-    console.log(id);
     el.innerHTML = msg;
     el.style.color = "green";
 }
